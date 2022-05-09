@@ -26,10 +26,10 @@ import java.util.Collections;
 public class SimpleModuleCodeGenerator {
 
     public static void main(String[] args) {
-        String database = "127.0.0.1:3306/organization";
+        String database = "127.0.0.1:3306/test";
         String username = "root";
         String password = "root";
-        String[] tables = new String[]{"user"};
+        String[] tables = new String[]{"test"};
         String parentPackageName = "com.scott.springbootdemo";
         //项目名称
         String moduleName = null;

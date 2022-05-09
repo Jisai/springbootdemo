@@ -1,20 +1,20 @@
 package ${package.Service};
 
-    import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-    import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
-    import ${package.Entity}.${entity};
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
+import ${package.Entity}.${entity};
 
-    /**
-    * @author ： ${author}
-    * @date ：Created in ${date}
-    * @description：${table.comment!} 服务类
-    * @modified By：
-    * @version: 1.0
-    */
+/**
+* @author ： ${author}
+* @date ：Created in ${date}
+* @description：${table.comment!} 服务类
+* @modified By：
+* @version: 1.0
+*/
 <#if kotlin>
-    interface ${table.serviceName} : ${superServiceClass}<${entity}>
+interface ${table.serviceName} : ${superServiceClass}<${entity}>
 <#else>
-    public interface ${table.serviceName} {
+public interface ${table.serviceName} {
 
     /**
     * ${table.comment!} 分页列表
@@ -64,5 +64,5 @@ package ${package.Service};
     */
     Boolean batchDelete(String ids);
 
-    }
+}
 </#if>

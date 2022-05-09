@@ -21,15 +21,15 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * ${table.comment!} 服务实现
- *
+* ${table.comment!} 服务实现
+*
 <#if author != "">
- * @author ${author}
+* @author ${author}
 </#if>
 <#if date != "">
- * @since ${date}
+* @since ${date}
 </#if>
- */
+*/
 @Service
 <#if kotlin>
 open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
@@ -53,8 +53,8 @@ public class ${table.serviceImplName} extends ServiceImpl<${table.mapperName}, $
     @Transactional(rollbackFor = {Exception.class, RuntimeException.class, MybatisPlusException.class})
     public ${entity} add(${entity} ${entity?uncap_first}) {
         if (!super.save(${entity?uncap_first})) {
-            log.error("save fail, 请求入参: {}" , JSONObject.toJSONString(${entity?uncap_first}));
-            throw new MybatisPlusException("操作失败");
+        log.error("save fail, 请求入参: {}" , JSONObject.toJSONString(${entity?uncap_first}));
+        throw new MybatisPlusException("操作失败");
         }
         return ${entity?uncap_first};
     }
@@ -64,8 +64,8 @@ public class ${table.serviceImplName} extends ServiceImpl<${table.mapperName}, $
     public Boolean update(${entity} ${entity?uncap_first}) {
         Assert.isFalse(Objects.isNull(super.getById(${entity?uncap_first}.getId())), "资源不存在");
         if (!super.updateById(${entity?uncap_first})) {
-            log.error("updateById fail, 请求入参: {}" , JSONObject.toJSONString(${entity?uncap_first}));
-            throw new MybatisPlusException("操作失败");
+        log.error("updateById fail, 请求入参: {}" , JSONObject.toJSONString(${entity?uncap_first}));
+        throw new MybatisPlusException("操作失败");
         }
         return Boolean.TRUE;
     }
@@ -82,8 +82,8 @@ public class ${table.serviceImplName} extends ServiceImpl<${table.mapperName}, $
     public Boolean delete(Long id) {
         Assert.isFalse(Objects.isNull(super.getById(id)), "资源不存在");
         if (!super.removeById(id)) {
-            log.error("removeById fail, 请求入参: {}" , id );
-            throw new MybatisPlusException("操作失败");
+        log.error("removeById fail, 请求入参: {}" , id );
+        throw new MybatisPlusException("操作失败");
         }
         return Boolean.TRUE;
     }
@@ -101,8 +101,8 @@ public class ${table.serviceImplName} extends ServiceImpl<${table.mapperName}, $
         List<${entity}> list = super.list(wrapper);
         Assert.isTrue(CollectionUtils.isNotEmpty(list) && list.size()==batchIds.length,"请求参数关联失败");
         if (!super.removeBatchByIds(Arrays.asList(batchIds))) {
-           log.error("removeBatchByIds fail, 请求入参: {}" , ids);
-           throw new MybatisPlusException("操作失败");
+        log.error("removeBatchByIds fail, 请求入参: {}" , ids);
+        throw new MybatisPlusException("操作失败");
         }
         return Boolean.TRUE;
     }
