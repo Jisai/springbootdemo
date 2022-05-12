@@ -1,5 +1,8 @@
 package com.scott.springbootdemo.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.scott.springbootdemo.service.ITestService;
@@ -31,9 +34,10 @@ public class TestController {
     private TestServiceImpl testService;
 
     @ApiOperation(value = " 分页列表", notes = " 分页列表")
-    @PostMapping(value = "/page", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Page<Test> page() {
-        return testService.page(new Page<>(1,2));
+    @GetMapping(value = "/page")
+    public Page<Test> page(@RequestParam(value = "current") Integer current,
+                           @RequestParam(value = "size") Integer size, @RequestBody(required = false) Test test) {
+        return testService.page(new Page<>(current,size), new QueryWrapper<Test>().eq("id", test.getId()));
     }
 
 //    @ApiOperation(value = "  新增", notes = " 新增")
